@@ -1,0 +1,339 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    x:Class="CommonWell.Tools.MainWindow"
+    Title="Token Maker" Height="650" Width="800" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="E_xit" Click="Exit_Click" />
+                <MenuItem Header="C_lear Settings" HorizontalAlignment="Left" Width="159" Click="MenuItem_Click"
+                          Margin="0,0,-74,0" />
+            </MenuItem>
+            <MenuItem Header="_Certificate">
+                <MenuItem Header="C_hoose X.509 Certificate" Click="ChooseCertificate_Click" />
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1" Margin="0,10,0,5">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="HorizontalContentAlignment" Value="Right" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+                <Style x:Key="InputControlStyle" TargetType="Control">
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                    <Setter Property="Padding" Value="2,2,2,2"></Setter>
+                    <Setter Property="Margin" Value="1,1,1,1"></Setter>
+                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource InputControlStyle}" />
+                <Style TargetType="ComboBox" BasedOn="{StaticResource InputControlStyle}" />
+                <Style TargetType="xctk:DateTimePicker" BasedOn="{StaticResource InputControlStyle}" />
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Organization Name:" />
+            <TextBox Grid.Row="0" Grid.Column="1"
+                        x:Name="TextBoxOrganization"
+                        Text="St. Barnabas Hospital"
+                        TabIndex="0" />
+
+            <Label Grid.Row="0" Grid.Column="2" Content="Organization ID:" />
+            <TextBox Grid.Row="0" Grid.Column="3"
+                        x:Name="TextBoxOrganizationId"
+                        Text="urn:oid:1.2.3.4.5.6.7.8"
+                        TabIndex="1" />
+
+            <Label Grid.Row="1" Grid.Column="0" Content="EMR Vendor Name:" />
+            <TextBox Grid.Row="1" Grid.Column="1"
+                        x:Name="TextBoxEmrVendor"
+                        TabIndex="2" />
+
+            <Label Grid.Row="1" Grid.Column="2" Content="EMR Vendor ID:" />
+            <TextBox Grid.Row="1" Grid.Column="3"
+                        x:Name="TextBoxEmrVendorId"
+                        TabIndex="3" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Facility Name:" />
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     x:Name="TextBoxFacilityName"
+                     TabIndex="2" />
+
+            <Label Grid.Row="2" Grid.Column="2" Content="Facility ID:" />
+            <TextBox Grid.Row="2" Grid.Column="3"
+                     x:Name="TextBoxFacilityId"
+                     TabIndex="3" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Subject:" />
+            <TextBox Grid.Row="3" Grid.Column="1"
+                        x:Name="TextBoxSubject"
+                        Text="Geoffrey Geiger"
+                        TabIndex="4" />
+
+            <Label Grid.Row="3" Grid.Column="2" Content="Subject Role:" />
+            <ComboBox Grid.Row="3" Grid.Column="3"
+                        x:Name="ComboBoxSubjectRole"
+                        Text="Subject Role"
+                        IsEditable="true"
+                        IsReadOnly="true"
+                        TabIndex="5" />
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Purpose of Use:" />
+            <ComboBox Grid.Row="4" Grid.Column="1"
+                        x:Name="ComboBoxPurposeOfUse"
+                        Text="Purpose of Use"
+                        IsEditable="true"
+                        IsReadOnly="true"
+                        TabIndex="6" />
+
+            <Label Grid.Row="4" Grid.Column="2" Content="NPI:" />
+            <TextBox Grid.Row="4" Grid.Column="3"
+                        x:Name="TextBoxNpi"
+                        TabIndex="7" />
+
+            <Label Grid.Row="5" Grid.Column="0" Content="Start Date:" />
+            <xctk:DateTimePicker Grid.Row="5" Grid.Column="1"
+                                    x:Name="StartDate"
+                                    Format="UniversalSortableDateTime"
+                                    TabIndex="8" />
+
+            <Label Grid.Row="5" Grid.Column="2" Content="End Date:" />
+            <xctk:DateTimePicker Grid.Row="5" Grid.Column="3"
+                                    x:Name="EndDate"
+                                    Format="UniversalSortableDateTime"
+                                    TabIndex="8" />
+
+            <Label Grid.Row="6" Grid.Column="0" Content="Correlation ID:" />
+            <TextBox Grid.Row="6" Grid.Column="1"
+                        x:Name="TextBoxCorrelationId"
+                        TabIndex="8"
+                        MinWidth="50" />
+
+            <Label Grid.Row="6" Grid.Column="2" Content="Request Date:" />
+            <xctk:DateTimePicker Grid.Row="6" Grid.Column="3"
+                                    x:Name="RequestDate"
+                                    Format="UniversalSortableDateTime"
+                                    TabIndex="8" />
+
+            <Label Grid.Row="6" Grid.Column="4" Content="Payload Hash:" />
+            <xctk:MultiLineTextEditor Grid.Row="6" Grid.Column="5" x:Name="TextPayloadHash" />
+            <Label Grid.Row="7" Grid.Column="0" Content="Audit Request ID:" />
+            <TextBox Grid.Row="7" Grid.Column="1"
+                     x:Name="TextBoxAuditRequestId"
+                     TabIndex="8"
+                     MinWidth="50" />
+
+            <Label Grid.Row="7" Grid.Column="2" Content="Source:" />
+            <TextBox Grid.Row="7" Grid.Column="3"
+                     x:Name="TextBoxSource"
+                     TabIndex="8"
+                     MinWidth="50" />
+            <RadioButton GroupName="SourceOption" x:Name="RadioBAA" Content="BAA" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="4" Grid.Row="7" Margin="11,0,0,0"/>
+            <RadioButton GroupName="SourceOption" x:Name="RadioNAIC" Content="NAIC" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="62,0,0,0" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" />
+        </Grid>
+
+        <TabControl Grid.Row="2" Margin="0,5,0,0">
+            <TabItem Header="JWT">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <DockPanel LastChildFill="true">
+                        <ToolBar DockPanel.Dock="top">
+                            <Button Content="Make Token" Click="EncodeJwt_Click" />
+                            <Separator Padding="10" />
+                            <Button Content="Decode Token" Click="DecodeJwt_Click" />
+                            <Separator Padding="10" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Label HorizontalAlignment="Right" VerticalAlignment="Center">Profile:</Label>
+                                <RadioButton GroupName="ProfileOption" x:Name="Xspa" Content="XSPA" IsChecked="True"
+                                             VerticalAlignment="Center" />
+                                <RadioButton GroupName="ProfileOption" x:Name="Iua" Content="IUA"
+                                             VerticalAlignment="Center" Margin="7,0,0,0" />
+                                <RadioButton GroupName="ProfileOption" x:Name="CustomXspa" Content="XPA with Payload Hash"
+                                             VerticalAlignment="Center" Margin="7,0,0,0" />
+                            </StackPanel>
+                        </ToolBar>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <DockPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                                <Label Content="Token" DockPanel.Dock="Top" />
+                                <TextBox x:Name="TextBoxJwtToken" FontFamily="Courier New" TextWrapping="Wrap"
+                                         ContextMenu="{x:Null}" />
+                            </DockPanel>
+
+                            <DockPanel Grid.Column="1" Grid.Row="0">
+                                <Label Content="Header" DockPanel.Dock="Top" />
+                                <TextBox x:Name="TextBoxJwtHeader" FontFamily="Courier New" TextWrapping="Wrap"
+                                         ContextMenu="{x:Null}" />
+                            </DockPanel>
+
+                            <DockPanel Grid.Column="1" Grid.Row="1">
+                                <Label Content="Body" DockPanel.Dock="Top" />
+                                <TextBox x:Name="TextBoxJwtBody" FontFamily="Courier New" TextWrapping="Wrap"
+                                         ContextMenu="{x:Null}" />
+                            </DockPanel>
+
+                            <DockPanel Grid.Column="1" Grid.Row="2">
+                                <Label Content="Signature" DockPanel.Dock="Top" />
+                                <TextBox x:Name="TextBoxJwtSignature" FontFamily="Courier New" TextWrapping="Wrap"
+                                         ContextMenu="{x:Null}" />
+                            </DockPanel>
+                        </Grid>
+                    </DockPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="SAML" BorderThickness="0">
+                <DockPanel LastChildFill="True">
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ToolBar Grid.Column="0" Grid.Row="0">
+                            <Button Content="Make Token" Click="SAML_Click" />
+                            <Separator Padding="10" />
+                            <StackPanel>
+                                <Label>Confirmation</Label>
+                                <ComboBox Name="ComboBoxConfirmation" SelectionChanged="ComboBoxConfirmation_Changed"/>
+                            </StackPanel>
+                            <Separator Padding="10" />
+                            <StackPanel Name="ProofKeyPanel" IsEnabled="False">
+                                <Label>Proof Key</Label>
+                                <RadioButton GroupName="ProofKeyOption" Name="AsymmetricKey" Content="Asymmetric" IsChecked="True" />
+                                <RadioButton GroupName="ProofKeyOption" Name="SymmetricKey" Content="Symmetric" />
+                            </StackPanel>
+                            <Separator Padding="10" />
+                            <StackPanel>
+                                <Label>Key Info</Label>
+                                <RadioButton GroupName="KeyInfoOption" Name="X509" Content="X.509" IsChecked="True" />
+                                <RadioButton GroupName="KeyInfoOption" Name="Rsa" Content="RSA" Checked="Rsa_Checked"
+                                             Unchecked="Rsa_Unchecked" />
+                            </StackPanel>
+                            <Separator Padding="10" />
+                            <StackPanel>
+                                <Label>Signing Algorithm:</Label>
+                                <ComboBox Name="ComboBoxSigningAlgorithm" />
+                            </StackPanel>
+                            <Separator Padding="10" />
+                            <StackPanel>
+                                <Label>Digest Algorithm:</Label>
+                                <ComboBox Name="ComboBoxDigestAlgorithm" />
+                            </StackPanel>
+
+                            <Separator Padding="10" />
+                            <CheckBox Name="CheckBoxEncrypt" Checked="CheckBoxEncrypt_Checked"
+                                      Unchecked="CheckBoxEncrypt_Unchecked">
+                                Encryption Off
+                            </CheckBox>
+                        </ToolBar>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="0.9*" />
+                        </Grid.RowDefinitions>
+
+                        <ToolBar Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                            <Button Content="Indent" Click="IndentSAML_Click"
+                                    ToolTip="Once reformatted, token cannot be validated." />
+                            <Separator />
+                            <Button Content="Validate" Click="SAMLValidate_Click" MinWidth="64"
+                                    HorizontalAlignment="Left" />
+                        </ToolBar>
+                        <DockPanel Grid.Column="0" Grid.Row="1">
+                            <TextBox x:Name="TextBoxSamlToken" MaxLength="0" MaxLines="10000" FontFamily="Courier New"
+                                     HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                     TextWrapping="Wrap" AcceptsReturn="True" ContextMenu="{x:Null}" FontSize="10"
+                                     ScrollViewer.CanContentScroll="True" />
+                        </DockPanel>
+                        <DockPanel Grid.Column="1" Grid.Row="1" Height="Auto"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                   ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <TreeView x:Name="TreeViewValidatedClaims" />
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar Grid.Row="3">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="115" />
+                            <ColumnDefinition Width="Auto" MinWidth="120" />
+                            <ColumnDefinition MinWidth="20" />
+                            <ColumnDefinition Width="78" />
+                            <ColumnDefinition Width="Auto" MinWidth="117" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0">
+                <Label HorizontalAlignment="Right">Signing Certificate:</Label>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <Label x:Name="LabelCertificateStatus" HorizontalContentAlignment="Left">
+                    <Label.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Choose Certificate" Click="ChooseCertificate_Click" />
+                        </ContextMenu>
+                    </Label.ContextMenu>
+                </Label>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="3">
+                <Label HorizontalAlignment="Right">Passphrase:</Label>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right" Grid.Column="4" HorizontalContentAlignment="Right">
+                <TextBox x:Name="TextBoxPassphrase" MinWidth="100" LostFocus="TxtPassphrase_LostFocus"
+                         TextChanged="TxtPassphrase_TextChanged" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
